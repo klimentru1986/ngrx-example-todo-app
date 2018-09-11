@@ -1,3 +1,9 @@
-.to-do {
+.to-do-container {
+    display: flex;
+    align-items: center;
     padding: 5px;
+}
+
+.to-do {
+    flex: 1;
 }

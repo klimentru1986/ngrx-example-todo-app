@@ -1,1 +1,8 @@
-<div class="to-do">{{toDo.name}}</div>
+<div class="to-do-container">
+  <div class="to-do">{{toDo.name}}</div>
+  <button mat-icon-button
+    (click)="onRemoveClick()"
+    color="accent">
+    <mat-icon aria-label="remove to do">delete_forever</mat-icon>
+  </button>
+</div>

@@ -1,3 +1,8 @@
-<p>
-  todo-list works!
-</p>
+<h4 class="title">To Do List</h4>
+
+<ng-container *ngIf="toDoList$ | async as toDoList">
+
+  <app-todo-item *ngFor="let toDo of toDoList"
+    [toDo]="toDo"></app-todo-item>
+
+</ng-container>

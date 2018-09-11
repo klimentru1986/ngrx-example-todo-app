@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ToDoState } from '../../store/todo.reducer';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ToDo } from '../../models/todo.model';
+import { getToDoList } from '../../store';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
+  public toDoList$: Observable<ToDo[]>;
 
-  constructor() { }
+  constructor(private store: Store<ToDoState>) {}
 
   ngOnInit() {
+    this.toDoList$ = this.store.select(getToDoList);
+    this.store.select(getToDoList).subscribe(i => console.log(i));
   }
-
 }

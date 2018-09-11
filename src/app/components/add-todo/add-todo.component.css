@@ -1,0 +1,8 @@
+.add-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-field {
+    width: 100%;
+}

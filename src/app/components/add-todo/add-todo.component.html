@@ -1,3 +1,12 @@
-<p>
-  add-todo works!
-</p>
+<div class="add-container">
+  <mat-form-field class="add-field">
+    <input matInput
+      [formControl]="addControl"
+      placeholder="to do">
+  </mat-form-field>
+  <button mat-icon-button
+    (click)="onSubmit()"
+    color="primary">
+    <mat-icon aria-label="add to do">playlist_add</mat-icon>
+  </button>
+</div>

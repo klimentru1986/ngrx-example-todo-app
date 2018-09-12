@@ -18,6 +18,5 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.toDoList$ = this.store.select(getToDoList);
-    this.store.select(getToDoList).subscribe(i => console.log(i));
   }
 }

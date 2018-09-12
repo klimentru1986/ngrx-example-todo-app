@@ -9,7 +9,10 @@ const toDoInitialState: ToDoState = {
   toDoList: []
 };
 
-export function toDoReducer(state = toDoInitialState, action: ToDoActions): ToDoState {
+export function toDoReducer(
+  state = toDoInitialState,
+  action: ToDoActions
+): ToDoState {
   switch (action.type) {
     case ToDoActionTypes.AddToDo:
       return {
@@ -21,7 +24,9 @@ export function toDoReducer(state = toDoInitialState, action: ToDoActions): ToDo
       const toDoIndex = state.toDoList.findIndex(
         td => td.id === action.payload.id
       );
-      const toDoList = state.toDoList.splice(toDoIndex, 1, action.payload);
+
+      const toDoList = [...state.toDoList];
+      toDoList.splice(toDoIndex, 1, action.payload);
 
       return {
         ...state,

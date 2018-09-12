@@ -1,8 +1,38 @@
-<div class="to-do-container">
+<div class="to-do-container"
+  *ngIf="!isEdit; else editItem">
   <div class="to-do">{{toDo.name}}</div>
+
+  <button mat-icon-button
+    (click)="isEdit=true"
+    color="accent">
+    <mat-icon aria-label="edit to do">edit</mat-icon>
+  </button>
+
   <button mat-icon-button
     (click)="onRemoveClick()"
     color="accent">
     <mat-icon aria-label="remove to do">delete_forever</mat-icon>
   </button>
 </div>
+
+
+<ng-template #editItem>
+  <div class="to-do-container">
+    <mat-form-field class="edit-field">
+      <input matInput
+        [formControl]="editControl"
+        [placeholder]="toDo.name">
+    </mat-form-field>
+    <button mat-icon-button
+      color="primary"
+      (click)="onSaveEdit()">
+      <mat-icon aria-label="update to do">done</mat-icon>
+    </button>
+
+    <button mat-icon-button
+      color="primary"
+      (click)="onCancelEdit()">
+      <mat-icon aria-label="update to do">close</mat-icon>
+    </button>
+  </div>
+</ng-template>

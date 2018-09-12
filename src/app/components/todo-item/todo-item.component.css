@@ -4,6 +4,7 @@
     padding: 5px;
 }
 
+.edit-field,
 .to-do {
     flex: 1;
 }

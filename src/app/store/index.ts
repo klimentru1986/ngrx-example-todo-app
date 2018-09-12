@@ -1,4 +1,4 @@
-import { ToDoState, toDoReducer } from './todo.reducer';
+import { ToDoState, toDoReducer, toDoAdapter } from './todo.reducer';
 import {
   ActionReducerMap,
   createFeatureSelector,
@@ -13,9 +13,11 @@ export const reducers: ActionReducerMap<State> = {
   toDo: toDoReducer
 };
 
+export const toDoAdapterSelectors = toDoAdapter.getSelectors();
+
 export const getToDoStore = createFeatureSelector('toDo');
 
 export const getToDoList = createSelector(
   getToDoStore,
-  (state: ToDoState) => state.toDoList
+  toDoAdapterSelectors.selectEntities
 );

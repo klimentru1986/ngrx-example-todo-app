@@ -1,14 +1,13 @@
 import { ToDo } from '../models/todo.model';
 import { ToDoActions, ToDoActionTypes } from './todo.actions';
 import { INITIAL_TODOS } from '../const/initial-todos.const';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-export interface ToDoState {
-  toDoList: ToDo[];
-}
+export interface ToDoState extends EntityState<ToDo> {}
 
-const toDoInitialState: ToDoState = {
-  toDoList: INITIAL_TODOS
-};
+export const toDoAdapter: EntityAdapter<ToDo> = createEntityAdapter<ToDo>();
+
+const toDoInitialState: ToDoState = toDoAdapter.getInitialState();
 
 export function toDoReducer(
   state = toDoInitialState,
@@ -16,35 +15,16 @@ export function toDoReducer(
 ): ToDoState {
   switch (action.type) {
     case ToDoActionTypes.AddToDo:
-      return {
-        ...state,
-        toDoList: [...state.toDoList, action.payload]
-      };
+      return toDoAdapter.addOne(action.payload, state);
 
-    case ToDoActionTypes.UpdateToDo: {
-      const toDoIndex = state.toDoList.findIndex(
-        td => td.id === action.payload.id
-      );
+    case ToDoActionTypes.UpdateToDo:
+      return toDoAdapter.upsertOne(action.payload, state);
 
-      const toDoList = [...state.toDoList];
-      toDoList.splice(toDoIndex, 1, action.payload);
-
-      return {
-        ...state,
-        toDoList
-      };
-    }
-
-    case ToDoActionTypes.RemoveToDo: {
-      const toDoList = state.toDoList.filter(td => td.id !== action.payload);
-
-      return {
-        ...state,
-        toDoList
-      };
-    }
+    case ToDoActionTypes.RemoveToDo:
+      return toDoAdapter.removeOne(action.payload, state);
 
     default:
       return state;
   }
 }
+

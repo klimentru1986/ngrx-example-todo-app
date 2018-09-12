@@ -1,12 +1,13 @@
 import { ToDo } from '../models/todo.model';
 import { ToDoActions, ToDoActionTypes } from './todo.actions';
+import { INITIAL_TODOS } from '../const/initial-todos.const';
 
 export interface ToDoState {
   toDoList: ToDo[];
 }
 
 const toDoInitialState: ToDoState = {
-  toDoList: []
+  toDoList: INITIAL_TODOS
 };
 
 export function toDoReducer(

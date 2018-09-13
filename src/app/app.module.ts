@@ -14,6 +14,8 @@ import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TodoApiService } from './services/todo-api.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),

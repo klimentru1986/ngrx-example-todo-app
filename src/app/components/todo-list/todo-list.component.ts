@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ToDo } from '../../models/todo.model';
 import { getToDoList } from '../../store';
 import { map } from 'rxjs/operators';
+import { TodoApiService } from '../../services/todo-api.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,7 +16,7 @@ import { map } from 'rxjs/operators';
 export class TodoListComponent implements OnInit {
   public toDoList$: Observable<ToDo[]>;
 
-  constructor(private store: Store<ToDoState>) {}
+  constructor(private store: Store<ToDoState>, private api: TodoApiService) {}
 
   ngOnInit() {
     this.toDoList$ = this.store

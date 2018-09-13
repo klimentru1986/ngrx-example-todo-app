@@ -7,7 +7,9 @@ import {
   GetAllToDoSuccess,
   RemoveToDo,
   RemoveToDoSuccess,
-  ErrorToDo
+  ErrorToDo,
+  AddToDo,
+  AddToDoSuccess
 } from './todo.actions';
 import { TodoApiService } from '../services/todo-api.service';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -33,6 +35,17 @@ export class ToDoEffects {
     switchMap((action: RemoveToDo) =>
       this.api.deleteToDo(action.payload).pipe(
         map(() => new RemoveToDoSuccess(action.payload)),
+        catchError(err => of(new ErrorToDo(err)))
+      )
+    )
+  );
+
+  @Effect()
+  addToDo$: Observable<Action> = this.actions$.pipe(
+    ofType(ToDoActionTypes.AddToDo),
+    switchMap((action: AddToDo) =>
+      this.api.addToDo(action.payload).pipe(
+        map(response => new AddToDoSuccess(response)),
         catchError(err => of(new ErrorToDo(err)))
       )
     )

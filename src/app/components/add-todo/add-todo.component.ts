@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ToDoState } from '../../store/todo.reducer';
 import { Store } from '@ngrx/store';
 import { AddToDo } from '../../store/todo.actions';
+import { ToDo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-add-todo',
@@ -27,9 +28,8 @@ export class AddTodoComponent implements OnInit {
 
     this.store.dispatch(
       new AddToDo({
-        name: this.addControl.value,
-        id: Math.round(Math.random() * 10000)
-      })
+        name: this.addControl.value
+      } as ToDo)
     );
 
     this.addControl.reset();

@@ -15,6 +15,10 @@ export class TodoApiService {
     return this.http.get<ToDo[]>(this.url);
   }
 
+  addToDo(todo: ToDo): Observable<ToDo> {
+    return this.http.post<ToDo>(this.url, todo);
+  }
+
   deleteToDo(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/id`);
   }

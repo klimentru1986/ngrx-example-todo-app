@@ -22,6 +22,7 @@ export function toDoReducer(
 ): ToDoState {
   switch (action.type) {
     case ToDoActionTypes.GetAllToDo:
+    case ToDoActionTypes.AddToDo:
     case ToDoActionTypes.RemoveToDo:
       return { ...state, loading: true, error: null };
 
@@ -32,8 +33,12 @@ export function toDoReducer(
         loaded: true
       });
 
-    case ToDoActionTypes.AddToDo:
-      return toDoAdapter.addOne(action.payload, state);
+    case ToDoActionTypes.AddToDoSuccess:
+      return toDoAdapter.addOne(action.payload, {
+        ...state,
+        loading: false,
+        loaded: true
+      });
 
     case ToDoActionTypes.UpdateToDo:
       return toDoAdapter.upsertOne(action.payload, state);

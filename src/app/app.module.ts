@@ -16,6 +16,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoApiService } from './services/todo-api.service';
+import { ToDoEffects } from './store/todo.effects';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { TodoApiService } from './services/todo-api.service';
     HttpClientModule,
     MaterialModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ToDoEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

@@ -2,9 +2,22 @@ import { Action } from '@ngrx/store';
 import { ToDo } from '../models/todo.model';
 
 export enum ToDoActionTypes {
+  GetAllToDo = '[ToDo] GetAllToDo',
+  GetAllToDoSuccess = '[ToDo] GetAllToDoSuccess',
   AddToDo = '[ToDo] AddToDo',
   UpdateToDo = '[ToDo] UpdateToDo',
-  RemoveToDo = '[ToDo] RemoveToDo'
+  RemoveToDo = '[ToDo] RemoveToDo',
+  ErrorToDo = '[ToDo] Error'
+}
+
+export class GetAllToDo implements Action {
+  readonly type = ToDoActionTypes.GetAllToDo;
+}
+
+export class GetAllToDoSuccess implements Action {
+  readonly type = ToDoActionTypes.GetAllToDoSuccess;
+
+  constructor(public payload: ToDo[]) {}
 }
 
 export class AddToDo implements Action {
@@ -25,4 +38,16 @@ export class RemoveToDo implements Action {
   constructor(public payload: number) {}
 }
 
-export type ToDoActions = AddToDo | UpdateToDo | RemoveToDo;
+export class ErrorToDo implements Action {
+  readonly type = ToDoActionTypes.ErrorToDo;
+
+  constructor(public payload: any) {}
+}
+
+export type ToDoActions =
+  | AddToDo
+  | UpdateToDo
+  | RemoveToDo
+  | GetAllToDo
+  | GetAllToDoSuccess
+  | ErrorToDo;

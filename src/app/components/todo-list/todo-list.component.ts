@@ -6,6 +6,7 @@ import { ToDo } from '../../models/todo.model';
 import { getToDoList } from '../../store';
 import { map } from 'rxjs/operators';
 import { TodoApiService } from '../../services/todo-api.service';
+import { GetAllToDo } from '../../store/todo.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -22,5 +23,7 @@ export class TodoListComponent implements OnInit {
     this.toDoList$ = this.store
       .select(getToDoList)
       .pipe(map(v => Object.values(v)));
+
+    this.store.dispatch(new GetAllToDo());
   }
 }

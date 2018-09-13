@@ -7,6 +7,7 @@ export enum ToDoActionTypes {
   AddToDo = '[ToDo] AddToDo',
   AddToDoSuccess = '[ToDo] AddToDoSuccess',
   UpdateToDo = '[ToDo] UpdateToDo',
+  UpdateToDoSuccess = '[ToDo] UpdateToDoSuccess',
   RemoveToDo = '[ToDo] RemoveToDo',
   RemoveToDoSuccess = '[ToDo] RemoveToDoSuccess',
   ErrorToDo = '[ToDo] Error'
@@ -40,6 +41,12 @@ export class UpdateToDo implements Action {
   constructor(public payload: ToDo) {}
 }
 
+export class UpdateToDoSuccess implements Action {
+  readonly type = ToDoActionTypes.UpdateToDoSuccess;
+
+  constructor(public payload: ToDo) {}
+}
+
 export class RemoveToDo implements Action {
   readonly type = ToDoActionTypes.RemoveToDo;
 
@@ -62,6 +69,7 @@ export type ToDoActions =
   | AddToDo
   | AddToDoSuccess
   | UpdateToDo
+  | UpdateToDoSuccess
   | RemoveToDo
   | RemoveToDoSuccess
   | GetAllToDo

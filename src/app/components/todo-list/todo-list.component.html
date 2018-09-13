@@ -1,8 +1,12 @@
 <h4 class="title">To Do List</h4>
 
-<ng-container *ngIf="toDoList$ | async as toDoList">
+<ng-container *ngIf="toDoList$|async as toDoList">
 
   <app-todo-item *ngFor="let toDo of toDoList"
     [toDo]="toDo"></app-todo-item>
+
+  <mat-progress-bar *ngIf="loading$|async"
+    mode="query"
+    color="accent"></mat-progress-bar>
 
 </ng-container>

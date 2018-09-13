@@ -21,3 +21,8 @@ export const getToDoList = createSelector(
   getToDoStore,
   toDoAdapterSelectors.selectEntities
 );
+
+export const getToDoLoading = createSelector(
+  getToDoStore,
+  (state: ToDoState) => state.loading
+);

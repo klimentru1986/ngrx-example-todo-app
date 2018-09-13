@@ -3,7 +3,7 @@ import { ToDoState } from '../../store/todo.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ToDo } from '../../models/todo.model';
-import { getToDoList } from '../../store';
+import { getToDoList, getToDoLoading } from '../../store';
 import { map } from 'rxjs/operators';
 import { TodoApiService } from '../../services/todo-api.service';
 import { GetAllToDo } from '../../store/todo.actions';
@@ -16,6 +16,7 @@ import { GetAllToDo } from '../../store/todo.actions';
 })
 export class TodoListComponent implements OnInit {
   public toDoList$: Observable<ToDo[]>;
+  public loading$: Observable<boolean>;
 
   constructor(private store: Store<ToDoState>, private api: TodoApiService) {}
 
@@ -23,6 +24,8 @@ export class TodoListComponent implements OnInit {
     this.toDoList$ = this.store
       .select(getToDoList)
       .pipe(map(v => Object.values(v)));
+
+    this.loading$ = this.store.select(getToDoLoading);
 
     this.store.dispatch(new GetAllToDo());
   }

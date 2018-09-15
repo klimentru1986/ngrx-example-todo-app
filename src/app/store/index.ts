@@ -19,5 +19,5 @@ export const getToDoStore = createFeatureSelector('toDo');
 
 export const getToDoList = createSelector(
   getToDoStore,
-  toDoAdapterSelectors.selectEntities
+  toDoAdapterSelectors.selectAll
 );

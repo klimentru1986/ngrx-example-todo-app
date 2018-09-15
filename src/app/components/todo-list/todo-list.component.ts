@@ -18,8 +18,6 @@ export class TodoListComponent implements OnInit {
   constructor(private store: Store<ToDoState>) {}
 
   ngOnInit() {
-    this.toDoList$ = this.store
-      .select(getToDoList)
-      .pipe(map(v => Object.values(v)));
+    this.toDoList$ = this.store.select(getToDoList);
   }
 }

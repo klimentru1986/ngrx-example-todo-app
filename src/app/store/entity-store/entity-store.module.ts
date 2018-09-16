@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { EntityMetadataMap, NgrxDataModule } from 'ngrx-data';
 
 export const entityMetadata: EntityMetadataMap = {
@@ -12,7 +11,6 @@ export const pluralNames = {
 
 @NgModule({
   imports: [
-    CommonModule,
     NgrxDataModule.forRoot({
       entityMetadata: entityMetadata,
       pluralNames: pluralNames

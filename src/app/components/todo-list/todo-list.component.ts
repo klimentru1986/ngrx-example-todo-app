@@ -12,9 +12,10 @@ import { EntityCollectionService, EntityServices } from 'ngrx-data';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
-  public toDoService: EntityCollectionService<ToDo>;
   public toDoList$: Observable<ToDo[]>;
   public loading$: Observable<boolean>;
+
+  private toDoService: EntityCollectionService<ToDo>;
 
   constructor(entityServices: EntityServices) {
     this.toDoService = entityServices.getEntityCollectionService('ToDo');

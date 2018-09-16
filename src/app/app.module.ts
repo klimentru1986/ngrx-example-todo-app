@@ -10,13 +10,11 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers } from './store';
-import { EffectsModule } from '@ngrx/effects';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
-import { TodoApiService } from './services/todo-api.service';
-import { ToDoEffects } from './store/todo.effects';
+import { EntityStoreModule } from './store/entity-store/entity-store.module';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -31,8 +29,9 @@ import { ToDoEffects } from './store/todo.effects';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([ToDoEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    EntityStoreModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

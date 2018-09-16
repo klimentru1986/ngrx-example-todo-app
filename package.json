@@ -27,6 +27,7 @@
     "@ngrx/store-devtools": "^6.1.0",
     "angular-in-memory-web-api": "^0.6.1",
     "core-js": "^2.5.4",
+    "ngrx-data": "^6.0.2-beta.10",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

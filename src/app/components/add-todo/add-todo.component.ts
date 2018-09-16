@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ToDoState } from '../../store/todo.reducer';
 import { Store } from '@ngrx/store';
-import { AddToDo } from '../../store/todo.actions';
 import { ToDo } from '../../models/todo.model';
+import { EntityCollectionService, EntityServices } from 'ngrx-data';
 
 @Component({
   selector: 'app-add-todo',
@@ -13,8 +12,11 @@ import { ToDo } from '../../models/todo.model';
 })
 export class AddTodoComponent implements OnInit {
   public addControl: FormControl;
+  public toDoService: EntityCollectionService<ToDo>;
 
-  constructor(private store: Store<ToDoState>) {}
+  constructor(entityServices: EntityServices) {
+    this.toDoService = entityServices.getEntityCollectionService('ToDo');
+  }
 
   ngOnInit() {
     this.addControl = new FormControl(null, Validators.required);
@@ -26,11 +28,9 @@ export class AddTodoComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(
-      new AddToDo({
-        name: this.addControl.value
-      } as ToDo)
-    );
+    this.toDoService.add({
+      name: this.addControl.value
+    } as ToDo);
 
     this.addControl.reset();
   }

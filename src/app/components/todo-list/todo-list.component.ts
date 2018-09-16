@@ -1,12 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ToDoState } from '../../store/todo.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ToDo } from '../../models/todo.model';
-import { getToDoList, getToDoLoading } from '../../store';
 import { map } from 'rxjs/operators';
-import { TodoApiService } from '../../services/todo-api.service';
-import { GetAllToDo } from '../../store/todo.actions';
+import { EntityCollectionService, EntityServices } from 'ngrx-data';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,16 +12,19 @@ import { GetAllToDo } from '../../store/todo.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
+  public toDoService: EntityCollectionService<ToDo>;
   public toDoList$: Observable<ToDo[]>;
   public loading$: Observable<boolean>;
 
-  constructor(private store: Store<ToDoState>, private api: TodoApiService) {}
+  constructor(entityServices: EntityServices) {
+    this.toDoService = entityServices.getEntityCollectionService('ToDo');
+  }
 
   ngOnInit() {
-    this.toDoList$ = this.store.select(getToDoList);
+    this.toDoList$ = this.toDoService.entities$;
 
-    this.loading$ = this.store.select(getToDoLoading);
+    this.loading$ = this.toDoService.loading$;
 
-    this.store.dispatch(new GetAllToDo());
+    this.toDoService.getAll();
   }
 }

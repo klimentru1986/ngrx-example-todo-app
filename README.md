@@ -2,7 +2,9 @@
 
 ### Материалы к [докладу](https://docs.google.com/presentation/d/1B5AKzkZ4_MjFfB_utKffkAxdYC6S93gNteQ2IAMWhGU/edit?usp=sharing).
 
-### [Статья на хабре](https://habr.com/post/418369/)
+### [Состояние состояния](https://www.youtube.com/watch?v=5ocaQYZF-Os) - доклад про state management
+
+### [Статья про angular-ngrx-data на хабре](https://habr.com/post/418369/)
 
 ## Примеры :
 * [@NgRx/store](https://github.com/klimentru1986/ngrx-example-todo-app)
